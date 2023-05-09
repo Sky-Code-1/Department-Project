@@ -23,11 +23,11 @@ public class Course {
     @SequenceGenerator(name = "course_seq", sequenceName = "course_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_seq")
     private Long courseId;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String courseName;
     @Column(unique = true, nullable = false)
     private String courseCode;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String level;
     @Enumerated(value = EnumType.STRING)
     private List<DayOfWeek> lectureDays;
@@ -35,9 +35,6 @@ public class Course {
     private Set<Student> students = new HashSet<>();
     @ManyToMany
     private Set<Lecturer> lecturers = new HashSet<>();
-    @Column(name = "lecture_start")
-    private LocalDateTime lecturerStartTime;
-    @Column(name = "lecture_end")
-    private LocalDateTime lecturerEndTime;
-
+    @OneToMany
+    private List<LectureDetails> details;
 }

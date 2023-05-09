@@ -18,7 +18,7 @@ public class CourseAdvisor {
     @SequenceGenerator(name = "advisor_seq", sequenceName = "advisor_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "advisor_seq")
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String level;
     @OneToOne
     private Lecturer advisor;

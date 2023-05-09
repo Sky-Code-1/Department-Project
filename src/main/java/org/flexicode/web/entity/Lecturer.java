@@ -19,10 +19,10 @@ public class Lecturer {
     @SequenceGenerator(name = "lecturer_seq", sequenceName = "lecturer_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lecturer_seq")
     private Long id;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     @Column(unique = true)
     private Post position;
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private Title title;
     @Column(nullable = false)
     private String firstname;
