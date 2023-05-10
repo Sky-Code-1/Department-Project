@@ -1,11 +1,9 @@
 package org.flexicode.web.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Lecturer {
     @Id
     @SequenceGenerator(name = "lecturer_seq", sequenceName = "lecturer_seq", allocationSize = 1)
@@ -30,4 +29,7 @@ public class Lecturer {
     private String lastname;
     @ManyToMany
     private Set<Course> courses = new HashSet<>();
+//    public void addCourses(Set<Course> course){
+//        this.courses.addAll((course));
+//    }
 }

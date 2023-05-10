@@ -12,4 +12,5 @@ public class DepartmentController {
     public String homepage(){
         return "home.html";
     }
+
 }

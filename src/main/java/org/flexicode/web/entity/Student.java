@@ -1,12 +1,11 @@
 package org.flexicode.web.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -14,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Student {
     @Id
     @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
@@ -28,7 +28,6 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_advisor")
     private CourseAdvisor courseAdvisor;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Course> courses = new HashSet<>();
-
 }

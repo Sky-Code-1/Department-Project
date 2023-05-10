@@ -1,10 +1,7 @@
 package org.flexicode.web.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -17,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Course {
     @Id
     @Column(name = "id")
@@ -29,6 +27,9 @@ public class Course {
     private String courseCode;
     @Column(nullable = false)
     private String level;
+    @Column(name = "Credit", nullable=false)
+    private int courseCredit;
+    @ElementCollection(targetClass = DayOfWeek.class)
     @Enumerated(value = EnumType.STRING)
     private List<DayOfWeek> lectureDays;
     @ManyToMany
@@ -37,4 +38,8 @@ public class Course {
     private Set<Lecturer> lecturers = new HashSet<>();
     @OneToMany
     private List<LectureDetails> details;
+
+    public void addStudent(Student student){
+        students.add(student);
+    }
 }

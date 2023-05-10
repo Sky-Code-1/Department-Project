@@ -19,6 +19,8 @@ public class LectureDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "details_seq")
     private Long lectureId;
     private DayOfWeek lectureDay;
+    @Column(name = "title")
+    private String lectureTitle;
     @Column(name = "duration")
     private int lectureDuration;
     @OneToOne
@@ -27,7 +29,6 @@ public class LectureDetails {
     private Time lectureStart;
     @Column(name = "lecture_end")
     private Time lectureEnd;
-
     @ManyToOne
     private Course course;
 }

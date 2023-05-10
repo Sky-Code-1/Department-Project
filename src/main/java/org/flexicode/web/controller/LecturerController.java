@@ -1,4 +1,4 @@
-package org.flexicode.web.controller.lecturers;
+package org.flexicode.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.flexicode.web.entity.Lecturer;
