@@ -2,10 +2,8 @@ package org.flexicode.web.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -19,7 +17,7 @@ public class Student {
     @SequenceGenerator(name = "student_seq", sequenceName = "student_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "student_seq")
     private Long studentId;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String firstname;
     @Column(nullable = false)
     private String lastname;

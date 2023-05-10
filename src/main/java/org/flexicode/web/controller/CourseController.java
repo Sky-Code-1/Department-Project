@@ -2,23 +2,32 @@ package org.flexicode.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.flexicode.web.entity.Course;
-import org.flexicode.web.entity.CourseRepository;
 import org.flexicode.web.requests.CourseRequest;
 import org.flexicode.web.service.CourseService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/courses")
 public class CourseController {
 
-    private final CourseRepository repo;
     private final CourseService service;
-    @PostMapping("/add/courses")
-    public void addAllCourses(@RequestBody CourseRequest... requests){
+    @PostMapping("/add")
+    public void saveAll(@RequestBody CourseRequest... requests){
         service.saveAll(requests);
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Course>> getAll(){
+        return ResponseEntity.ok(service.getAll());
+    }
+    @GetMapping("/get/{id}")
+    public Course getCourseById(@PathVariable String id){
+        long courseId = Long.parseLong(id);
+        return service.getCourseById(courseId);
     }
 }

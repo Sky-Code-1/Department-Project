@@ -3,7 +3,6 @@ package org.flexicode.web.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +26,7 @@ public class Lecturer {
     private String firstname;
     @Column(nullable = false)
     private String lastname;
+    private boolean hasPost;
     @ManyToMany
     private Set<Course> courses = new HashSet<>();
 //    public void addCourses(Set<Course> course){

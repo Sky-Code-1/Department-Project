@@ -1,15 +1,14 @@
 package org.flexicode.web.service;
 
 import lombok.RequiredArgsConstructor;
-import org.flexicode.web.entity.Course;
-import org.flexicode.web.entity.CourseRepository;
-import org.flexicode.web.entity.Student;
-import org.flexicode.web.entity.StudentRepository;
+import org.flexicode.web.entity.*;
 import org.flexicode.web.requests.CourseRequest;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +28,14 @@ public class CourseService {
                     .build();
             repo.save(course);
         }
+    }
+    public List<Course> getAll(){
+        return repo.findAll();
+    }
+    public Course getCourseById(long courseId) {
+        if(repo.existsById(courseId))
+            return repo.findById(courseId).get();
+        else
+            throw new ObjectNotFoundException("Object was not found", Course.class);
     }
 }

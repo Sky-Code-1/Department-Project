@@ -1,28 +1,31 @@
 package org.flexicode.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.flexicode.web.entity.Course;
 import org.flexicode.web.entity.Lecturer;
-import org.flexicode.web.entity.LecturerRepository;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.flexicode.web.requests.LecturerRequest;
+import org.flexicode.web.service.LecturerService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/lecturer")
 public class LecturerController {
 
-    private final LecturerRepository repo;
+    private final LecturerService service;
 
 
-    @RequestMapping("/api/v1/dept/lecturers/add-all")
-    public void saveAll(@RequestBody Lecturer... lecturers){
-        for (Lecturer l: lecturers) {
-            repo.save(l);
-        }
-        System.out.println("Successfully added " + lecturers.length + " lecturers to the list of lecturers");
+    @PostMapping("/add")
+    public void saveAll(@RequestBody LecturerRequest... lecturers){
+            service.addLecturer(lecturers);
+            System.out.println("Successfully added " + lecturers.length + " lecturers to the list of lecturers");
+    }
+    @GetMapping("/get-all")
+    public ResponseEntity<List<Lecturer>> getAll(){
+        return ResponseEntity.ok(service.getAll());
     }
 
 }
-

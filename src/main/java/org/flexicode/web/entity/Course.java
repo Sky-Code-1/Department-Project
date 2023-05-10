@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +31,8 @@ public class Course {
     @ElementCollection(targetClass = DayOfWeek.class)
     @Enumerated(value = EnumType.STRING)
     private List<DayOfWeek> lectureDays;
-    @ManyToMany
+
+    @ManyToMany(cascade=CascadeType.PERSIST)
     private Set<Student> students = new HashSet<>();
     @ManyToMany
     private Set<Lecturer> lecturers = new HashSet<>();
