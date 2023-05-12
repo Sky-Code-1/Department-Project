@@ -95,10 +95,10 @@ public class StudentService {
     public Map<String, List<String>> getStudentSchedule(String studentId) {
         long id = Long.parseLong(studentId);
         Map<String, List<String>> studentSchedule = new HashMap<>();
-        List<String> days = new ArrayList<>();
         Student student = sRepo.findById(id).stream().findFirst().orElseThrow(ResourceNotFoundException::new);
         Set<Course> courses = student.getCourses();
         courses.forEach(c -> {
+            List<String> days = new ArrayList<>();
             c.getLectureDays().forEach(d -> days.add(d.toString()));
             studentSchedule.put(c.getCourseName(), days);
         });
