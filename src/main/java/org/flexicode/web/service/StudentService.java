@@ -9,6 +9,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.util.*;
 
 @Service
@@ -92,15 +93,26 @@ public class StudentService {
         return sRepo.findAll();
     }
 
-    public Map<String, List<String>> getStudentSchedule(String studentId) {
+    public Map<DayOfWeek, List<String>> getStudentSchedule(String studentId) {
         long id = Long.parseLong(studentId);
-        Map<String, List<String>> studentSchedule = new HashMap<>();
+        Map<DayOfWeek, List<String>> studentSchedule = new HashMap<>();
+        studentSchedule.put(DayOfWeek.MONDAY, new ArrayList<String>());
+        studentSchedule.put(DayOfWeek.TUESDAY, new ArrayList<String>());
+        studentSchedule.put(DayOfWeek.WEDNESDAY, new ArrayList<String>());
+        studentSchedule.put(DayOfWeek.THURSDAY, new ArrayList<String>());
+        studentSchedule.put(DayOfWeek.FRIDAY, new ArrayList<String>());
+        studentSchedule.put(DayOfWeek.SATURDAY, new ArrayList<String>());
         Student student = sRepo.findById(id).stream().findFirst().orElseThrow(ResourceNotFoundException::new);
         Set<Course> courses = student.getCourses();
         courses.forEach(c -> {
-            List<String> days = new ArrayList<>();
-            c.getLectureDays().forEach(d -> days.add(d.toString()));
-            studentSchedule.put(c.getCourseName(), days);
+            List<DayOfWeek> days = new ArrayList<>();
+            days = c.getLectureDays();
+            days.forEach(day -> {
+                switch (day) {
+                    case MONDAY, TUESDAY,  WEDNESDAY, THURSDAY, FRIDAY, SATURDAY ->
+                            studentSchedule.get(day).add(c.getCourseName());
+                }
+            });
         });
         return studentSchedule;
     }

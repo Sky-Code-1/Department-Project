@@ -10,6 +10,7 @@ import org.flexicode.web.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/schedule")
-    public ResponseEntity<Map<String, List<String>>> getStudentSchedule(@PathVariable String id){
+    public ResponseEntity<Map<DayOfWeek, List<String>>> getStudentSchedule(@PathVariable String id){
         return ResponseEntity.ok(studentService.getStudentSchedule(id));
     }
 
