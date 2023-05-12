@@ -2,13 +2,20 @@ package org.flexicode.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.flexicode.web.entity.AdvisorRepo;
+import org.flexicode.web.entity.Course;
+import org.flexicode.web.entity.CourseAdvisor;
+import org.flexicode.web.entity.Student;
 import org.flexicode.web.requests.StudentRequest;
 import org.flexicode.web.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 @RestController
-@RequestMapping
+@RequestMapping("students")
 @RequiredArgsConstructor
 public class StudentController {
     private final AdvisorRepo repo;
@@ -16,10 +23,32 @@ public class StudentController {
 
     @PostMapping("/add")
     public void saveStudents(@RequestBody StudentRequest... requests){
-       studentService.saveStudent(requests);
+       studentService.saveAllStudent(requests);
     }
-    @GetMapping("/homepage")
-    public ResponseEntity<String> home(){
-        return ResponseEntity.ok("Welcome to the homepage");
+    @PatchMapping("/{id}/update")
+    public void updateStudent(@PathVariable String id, @RequestBody Map<String, Object> request){
+        studentService.update(id, request);
+    }
+    @GetMapping("/get/all")
+    public ResponseEntity<List<Student>> getAll(){
+        return ResponseEntity.ok(studentService.getAll());
+    }
+
+    @GetMapping("/{id}/schedule")
+    public ResponseEntity<Map<String, List<String>>> getStudentSchedule(@PathVariable String id){
+        return ResponseEntity.ok(studentService.getStudentSchedule(id));
+    }
+
+    @GetMapping("/{id}/course")
+    public ResponseEntity<Set<Course>> getStudentCourse(@PathVariable String id){
+        return ResponseEntity.ok(studentService.getStudentCourses(id));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudent(@PathVariable String id){
+        return ResponseEntity.ok(studentService.getStudentById(id));
+    }
+    @GetMapping("/{id}/advisor")
+    public ResponseEntity<CourseAdvisor> getStudentCourseAdvisor(@PathVariable String studentId){
+        return ResponseEntity.ok(studentService.getStudentCourseAdvisor(studentId));
     }
 }

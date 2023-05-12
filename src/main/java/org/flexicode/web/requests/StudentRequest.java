@@ -14,4 +14,5 @@ public class StudentRequest {
     private String firstname;
     private String lastname;
     private String level;
+    private String email;
 }

@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.flexicode.web.entity.*;
 import org.flexicode.web.requests.CourseRequest;
 import org.hibernate.ObjectNotFoundException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +30,7 @@ public class CourseService {
         }
     }
     public List<Course> getAll(){
+        System.out.println("retrieving course from db");
         return repo.findAll();
     }
     public Course getCourseById(long courseId) {
@@ -38,4 +39,11 @@ public class CourseService {
         else
             throw new ObjectNotFoundException("Object was not found", Course.class);
     }
+   public void updateCourse(String courseName, Course course){
+        Course toUpdate = repo.findByCourseName(courseName).stream().findFirst().orElseThrow(ResourceNotFoundException::new);
+        Set<Student> students = toUpdate.getStudents();
+        students.addAll(course.getStudents());
+        toUpdate.setStudents(students);
+        repo.save(toUpdate);
+   }
 }

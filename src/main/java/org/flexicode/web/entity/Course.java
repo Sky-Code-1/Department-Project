@@ -1,5 +1,7 @@
 package org.flexicode.web.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +16,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer",
+        "handler"})
 public class Course {
     @Id
     @Column(name = "id")
@@ -31,8 +35,8 @@ public class Course {
     @ElementCollection(targetClass = DayOfWeek.class)
     @Enumerated(value = EnumType.STRING)
     private List<DayOfWeek> lectureDays;
-
-    @ManyToMany(cascade=CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
     private Set<Student> students = new HashSet<>();
     @ManyToMany
     private Set<Lecturer> lecturers = new HashSet<>();
