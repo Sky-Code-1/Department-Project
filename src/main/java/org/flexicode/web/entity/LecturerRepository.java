@@ -8,4 +8,8 @@ import java.util.List;
 @RepositoryRestResource
 public interface LecturerRepository extends CrudRepository<Lecturer, Long> {
     public List<Lecturer> findAll();
+
+    public Lecturer findByFirstnameIgnoreCaseAndLastnameIgnoreCase(String firstname, String lastname);
+
+    public Lecturer findByEmailIgnoreCase(String email);
 }

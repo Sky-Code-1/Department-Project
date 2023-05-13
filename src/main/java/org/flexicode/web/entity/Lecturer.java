@@ -1,9 +1,11 @@
 package org.flexicode.web.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,10 +28,13 @@ public class Lecturer {
     private String firstname;
     @Column(nullable = false)
     private String lastname;
+    @Column(unique = true, nullable = false)
+    private String email;
     private boolean hasPost;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.DETACH)
+    @JoinTable(name = "lecturer_courses",
+            joinColumns = {@JoinColumn(name = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "id")})
+    @JsonIgnore
     private Set<Course> courses = new HashSet<>();
-//    public void addCourses(Set<Course> course){
-//        this.courses.addAll((course));
-//    }
 }

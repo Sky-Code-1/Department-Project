@@ -1,2 +1,3 @@
-package org.flexicode.web.config;public class WebConfig {
+package org.flexicode.web.config;
+public class WebConfig {
 }

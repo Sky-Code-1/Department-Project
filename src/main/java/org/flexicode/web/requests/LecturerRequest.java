@@ -1,6 +1,6 @@
 package org.flexicode.web.requests;
 
-import jakarta.persistence.Transient;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LecturerRequest {
+    private String email;
     private String firstname;
     private String lastname;
     private Title title;

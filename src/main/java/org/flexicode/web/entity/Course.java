@@ -38,7 +38,8 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     @JsonIgnore
     private Set<Student> students = new HashSet<>();
-    @ManyToMany
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
     private Set<Lecturer> lecturers = new HashSet<>();
     @OneToMany
     private List<LectureDetails> details;

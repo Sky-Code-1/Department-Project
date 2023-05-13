@@ -46,4 +46,10 @@ public class CourseService {
         toUpdate.setStudents(students);
         repo.save(toUpdate);
    }
+
+    public Set<Lecturer> getLecturers(String id) {
+        return repo.findById(Long.parseLong(id))
+                .orElseThrow()
+                .getLecturers();
+    }
 }

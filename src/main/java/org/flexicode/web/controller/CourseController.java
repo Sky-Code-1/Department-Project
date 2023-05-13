@@ -1,17 +1,15 @@
 package org.flexicode.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.flexicode.web.entity.Course;
-import org.flexicode.web.entity.Student;
+import org.flexicode.web.entity.Lecturer;
 import org.flexicode.web.requests.CourseRequest;
 import org.flexicode.web.service.CourseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,13 +27,12 @@ public class CourseController {
         return ResponseEntity.ok(service.getAll());
     }
     @GetMapping("/get/{id}")
-    public Course getCourseById(@PathVariable String id){
+    public ResponseEntity<Course> getCourseById(@PathVariable String id){
         long courseId = Long.parseLong(id);
-        return service.getCourseById(courseId);
+        return ResponseEntity.ok(service.getCourseById(courseId));
     }
-//    @GetMapping("/get/{name}/students")
-//    public ResponseEntity<List<Student>> getStudentOfferingCourse(@PathVariable String name){
-//        return ResponseEntity.ok();
-//    }
-
+    @GetMapping("/{id}/lecturers")
+    public ResponseEntity<Set<Lecturer>> getLecturers(@PathVariable String id){
+        return ResponseEntity.ok(service.getLecturers(id));
+    }
 }
