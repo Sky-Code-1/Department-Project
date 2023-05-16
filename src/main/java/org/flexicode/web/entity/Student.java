@@ -28,6 +28,7 @@ public class Student {
     private String level;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_advisor")
+    @JsonIgnore
     private CourseAdvisor courseAdvisor;
     @ManyToMany(cascade=CascadeType.DETACH)
     @JoinTable(name = "student_courses",

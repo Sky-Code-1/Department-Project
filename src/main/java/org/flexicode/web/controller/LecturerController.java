@@ -15,7 +15,7 @@ import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/lecturer")
+@RequestMapping("/lecturers")
 public class LecturerController {
 
     private final LecturerService service;

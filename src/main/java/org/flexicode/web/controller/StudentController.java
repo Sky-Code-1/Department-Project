@@ -35,6 +35,10 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAll());
     }
 
+//    @GetMapping("/?{level}")
+//    public ResponseEntity<List<Student>> getByLevel(String level){
+//        return ResponseEntity.ok(studentService.getStudentByLevel(level));
+//    }
     @GetMapping("/{id}/schedule")
     public ResponseEntity<Map<DayOfWeek, List<String>>> getStudentSchedule(@PathVariable String id){
         return ResponseEntity.ok(studentService.getStudentSchedule(id));
@@ -49,7 +53,8 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
     @GetMapping("/{id}/advisor")
-    public ResponseEntity<CourseAdvisor> getStudentCourseAdvisor(@PathVariable String studentId){
+    public ResponseEntity<CourseAdvisor> getStudentCourseAdvisor(@PathVariable Object id){
+        String studentId = id.toString();
         return ResponseEntity.ok(studentService.getStudentCourseAdvisor(studentId));
     }
 }

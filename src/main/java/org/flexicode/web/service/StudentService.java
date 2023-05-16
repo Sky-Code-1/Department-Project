@@ -138,4 +138,12 @@ public class StudentService {
                 .orElseThrow(StudentNotFoundException::new)
                 .getCourseAdvisor();
     }
+
+    public List<Student> getStudentByLevel(String level){
+        return sRepo.findByLevel(level);
+    }
+
+    public List<Student> getSomeStudents(long i) {
+        return sRepo.findByStudentIdLessThan(i);
+    }
 }

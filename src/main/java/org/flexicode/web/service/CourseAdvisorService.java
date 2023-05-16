@@ -1,9 +1,8 @@
 package org.flexicode.web.service;
 
 import lombok.RequiredArgsConstructor;
-import org.flexicode.web.controller.AdvisorRequest;
+import org.flexicode.web.requests.AdvisorRequest;
 import org.flexicode.web.entity.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,4 +37,5 @@ public class CourseAdvisorService {
     public CourseAdvisor getAdvisorByLevel(String level) {
         return aRepo.findByLevel(level).stream().findFirst().orElseThrow();
     }
+
 }

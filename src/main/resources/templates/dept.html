@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>
+            Department Management System
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" th:href="@{css/dept.css}" href="../static/css/dept.css"/>
+    </head>
+    <body class="body-two">
+        <div class="full-content-container-div">
+            <div class="header-div js-header-div header-div-two">
+                <button class="menu-button js-toggle-button" onclick="onToggleButtonClick()">Menu</button>
+                <p class="header-paragraph">Department Of Civil Engineering</p>
+                <div class="header-button-div">
+                    <button class="header-home-button">Home</button>
+                    <button class="header-login-button">Login</button>
+                    <button class="header-about-button">About</button>
+                </div>
+            </div>
+            <div class="sidebar-div js-sidebar-div">
+                <p class="sidebar-paragraph">School Of Engineering</p>
+                <div class="sidebar-button-div">
+                    <a href="http://localhost:8080/dept/students/get/all" class="students-button-wrapper">
+                        <button class="students-button">Students</button>
+                    </a>
+                    <a href="http://localhost:8080/dept/lecturers/get/all" class="students-button-wrapper">
+                        <button class="lecturers-button">Lecturers</button>
+                    </a>
+                    <a href="http://localhost:8080/dept/courses/get/all" class="students-button-wrapper">
+                        <button class="courses-button">Courses</button>
+                    </a>
+                    <button class="developer-button">About The Developer</button>
+                </div>
+            </div>
+            <div class="body-div js-body-div">
+                <p>School Of Engineering: A school where world Problem solvers are made</p>
+                <p>Join Us Today and be a member of the current world problem solvers register and apply for the next cohort
+                    !!!</p>
+                <p>Our Students are all at the top of their league, by coming out top at all competitions & challenges they've
+                    ever partake in</p>
+                <p style="color: rgb(65, 197, 241); font-size: 20px; font-weight: 600px;">Meet Our Students</p>
+                <div class="student-profile-details-div">
+                    <div  th:each="student: ${students}" class="image-div">
+                        <img class="profile-pic" src="../static/picture.png" th:src="@{picture.png}">
+                        <div class="text-details-div">
+                            <a th:href="@{/lecturers/{id}(id=${student.studentId})}" class="student-href">
+                                <div class="names-div">
+                                    <p th:text="${student.firstname}" class="firstname-paragraph">Onyeka</p>
+                                    <p th:text="${student.lastname}" class="lastname-paragraph"> Chinedu</p>
+                                </div>
+                        </a>
+                            <p class="position-paragraph">Course Rep</p></div>
+                    </div>
+                </div>
+                <p style="color: rgb(65, 197, 241); font-size: 20px; font-weight: 600px;">Our Esteemed Tutors @ School Of Engineering!</p>
+                <div class="student-profile-details-div">
+                    <div  th:each="lecturer: ${lecturers}" class="image-div">
+                        <img class="profile-pic"  src="../static/picture.png" th:src="@{picture.png}">
+                        <div class="text-details-div">
+                            <p th:text="${lecturer.title}" class="title">Timothy Kelly</p>
+                            <a th:href="@{/lecturers/{id}(id=${lecturer.id})}" class="student-href">
+                                <div class="names-div">
+                                    <p th:text="${lecturer.firstname}" class="firstname-paragraph">Onyeka</p>
+                                    <p th:text="${lecturer.lastname}" class="lastname-paragraph"> Chinedu</p>
+                                </div>
+                            </a>
+                            <p th:if="${lecturer.hasPost}" th:text="${lecturer.position}" class="position-paragraph">Course Rep</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="../static/dept.js" th:src="@{../static/dept.js}"></script>
+    </body>
+</html>

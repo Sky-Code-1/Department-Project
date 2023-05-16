@@ -12,4 +12,7 @@ public interface LecturerRepository extends CrudRepository<Lecturer, Long> {
     public Lecturer findByFirstnameIgnoreCaseAndLastnameIgnoreCase(String firstname, String lastname);
 
     public Lecturer findByEmailIgnoreCase(String email);
+
+    List<Lecturer> findByIdLessThanEqual(Long id);
+
 }

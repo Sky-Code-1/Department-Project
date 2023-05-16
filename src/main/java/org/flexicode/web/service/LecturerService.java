@@ -83,4 +83,8 @@ public class LecturerService {
     public Set<Course> getLecturerCourses(String id) {
         return repo.findById(Long.parseLong(id)).stream().findFirst().orElseThrow(LecturerNotFoundException::new).getCourses();
     }
+
+    public List<Lecturer> getSomeLecturers(long i) {
+        return repo.findByIdLessThanEqual(i);
+    }
 }

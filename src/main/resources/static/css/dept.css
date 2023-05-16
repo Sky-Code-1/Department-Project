@@ -1,0 +1,173 @@
+body{
+    font-family: Arial;
+    margin-top: 70px;
+    padding-left: 1%;
+    width: 100%;
+
+}
+.body-two{
+    margin-left: 251px;
+}
+button{
+    cursor: pointer;
+}
+.header-div{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    background-color: rgb(218, 167, 73);
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    padding-left: 25px;
+    padding-right: 25px;
+    z-index: 1;
+}
+.menu-button{
+    font-size: 18px;
+    padding: 8px 20px;
+    margin-right: 30px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+    opacity: 1;
+    background-color: rgb(204, 145, 37);
+    color: rgb(64, 64, 206);
+    border-radius: 15px;
+}
+.menu-button:hover{
+    background-color: rgb(64, 64, 206);
+    color: rgb(204, 145, 37);
+}
+.header-paragraph{
+    flex: 1;
+}.header-home-button, .header-login-button, .header-about-button{
+    font-size: 16px;
+    padding: 8px;
+    
+}
+.header-about-button{
+    background-color: rgb(218, 167, 73);
+    border: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: rgb(60, 60, 243);
+    transition: background-color 200ms;
+}
+.header-about-button:hover{
+    border-color: rgb(218, 167, 73);
+    background-color: rgb(60, 60, 243);
+}
+
+.sidebar-div{
+    border-right: solid;
+    border-color: rgb(192, 191, 191);
+    border-width: 0.1px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    z-index: -1;
+}
+.header-div-two{
+    left: 251px;
+}
+.sidebar-div-two{
+    display: none;
+}
+.sidebar-paragraph{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px;
+    height: 60px;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-color: rgb(192, 191, 191);
+}
+.sidebar-button-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.students-button-wrapper{
+    padding: 0px;
+}
+.students-button, .lecturers-button, .courses-button, .developer-button{
+    border: none;
+    border-bottom: solid;
+    border-bottom-width: 0.5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom-color: rgb(224, 221, 221);
+    font-size: 16px;
+    transition: background-color 300ms;
+    width: 100%;
+}
+.developer-button{
+    border: none;
+}
+.students-button:hover, .lecturers-button:hover, .courses-button:hover, .developer-button:hover{
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+}
+.students-button:active, .lecturers-button:active, .courses-button:active, .developer-button:active{
+    background-color: rgb(141, 21, 21);
+}
+.student-profile-details-div{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: solid;
+    border-bottom: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-color: rgb(222, 222, 228);
+    padding: 20px;
+}
+.image-div{
+    border: solid;
+    border-color: lightblue;
+    border-width: 1px;
+    padding: 12px;
+    border-radius: 20px;
+    margin-right: 25px;
+}
+.profile-pic{
+    border-radius: 25px;
+    width: 200px;
+    margin-bottom: 12px;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+}
+.name-paragraph, .level-paragraph, .position-paragraph{
+    margin: 0;
+    padding: 2px;
+}
+.text-details-div{
+    padding-left: 20px;
+}
+.names-div{
+    display: inline;
+}
+.title-paragraph{
+    padding: 0%;
+    margin: 0%;
+}
+.firstname-paragraph, .lastname-paragraph{
+    padding: 0%;
+    display: inline;
+    margin-top: 0%;
+}

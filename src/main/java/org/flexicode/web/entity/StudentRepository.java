@@ -11,4 +11,6 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
     public List<Student> findAll();
 
     public List<Student> findByLevel(String level);
+
+    public List<Student> findByStudentIdLessThan(Long studentId);
 }
